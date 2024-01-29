@@ -1,0 +1,40 @@
+step:1
+#importing 
+
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+step:2
+#Main_codes
+
+gas = pd.read_csv("/content/gas_prices.csv")
+plt.figure(figsize=(8,5))
+plt.title("Gas prices over the time(in USD)", fontdict={'fontweight':'bold', 'fontsize': 18})
+
+plt.plot(gas.Year,gas.USA, 'y.-' , label = 'USA')
+plt.plot(gas['Year'], gas.Canada, 'r.-', label = 'Canada')
+plt.plot(gas['Year'],gas.France, 'g.-',label = 'France')
+
+
+# countries_to_look_at = ['Australia','USA','Canada', 'South Korea']
+
+#Another way to plot values
+# for country in gas:
+#   if country in countries_to_look_at:
+#      plt.plot(gas.Year, gas[country], marker='.')
+
+plt.xticks(gas.Year[::3].tolist()+[2011])
+
+print(gas.Year[::3])
+
+plt.xlabel('Years')
+plt.ylabel('US Dollars')
+
+#To move the label outside the graph
+#plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+
+
+plt.legend()
+plt.savefig('Gas_price_figure.png',dpi = 300)
+plt.show()
